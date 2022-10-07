@@ -12,7 +12,9 @@ import com.example.pemrogramanwebsite.databinding.ActivityWordsBinding
 
 class WordsActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
+    // set the linear layout first
     private var isLinearLayoutManager = true
+   // change the layout when clicked the item menu
     private fun chooseLayout() {
         if (isLinearLayoutManager) {
             recyclerView.layoutManager = LinearLayoutManager(this)
@@ -22,21 +24,14 @@ class WordsActivity : AppCompatActivity() {
         recyclerView.adapter = LetterAdapter()
     }
 
+    // set the icon for the menu
     private fun setIcon(menuItem: MenuItem?) {
         if (menuItem == null)
             return
-
-        // Set the drawable for the menu icon based on which LayoutManager is currently in use
-
-        // An if-clause can be used on the right side of an assignment if all paths return a value.
-        // The following code is equivalent to
-        // if (isLinearLayoutManager)
-        //     menu.icon = ContextCompat.getDrawable(this, R.drawable.ic_grid_layout)
-        // else menu.icon = ContextCompat.getDrawable(this, R.drawable.ic_linear_layout)
         menuItem.icon =
             if (isLinearLayoutManager)
-                ContextCompat.getDrawable(this, R.drawable.ic_grid_layout)
-            else ContextCompat.getDrawable(this, R.drawable.ic_linear_layout)
+                ContextCompat.getDrawable(this, R.drawable.ic_linear_layout)
+            else ContextCompat.getDrawable(this, R.drawable.ic_grid_layout)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -60,11 +55,6 @@ class WordsActivity : AppCompatActivity() {
 
                 return true
             }
-            //  Otherwise, do nothing and use the core event handling
-
-            // when clauses require that all possible paths be accounted for explicitly,
-            //  for instance both the true and false cases if the value is a Boolean,
-            //  or an else to catch all unhandled cases.
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -82,5 +72,7 @@ class WordsActivity : AppCompatActivity() {
 
         // change layout
         chooseLayout()
+
+        title = "Words Application"
     }
 }

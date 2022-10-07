@@ -26,7 +26,7 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 
 /**
- * Adapter for the [RecyclerView] in [MainActivity].
+ * Adapter for the [RecyclerView] in [WordsActivity].
  */
 class LetterAdapter :
     RecyclerView.Adapter<LetterAdapter.LetterViewHolder>() {
@@ -52,7 +52,6 @@ class LetterAdapter :
         val layout = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.item_view, parent, false)
-        // Setup custom accessibility delegate to set the text read
         layout.accessibilityDelegate = Accessibility
         return LetterViewHolder(layout)
     }
@@ -64,7 +63,7 @@ class LetterAdapter :
         holder.button.setOnClickListener {
             val context = holder.view.context
             val intent = Intent(context, WordsDetailActivity::class.java)
-            // Membawa data ke WordsDetailActivity dengan nama "letter" yang berisi text pada button
+            // carry the letter of the button to the WordsDetailActicity
             intent.putExtra(WordsDetailActivity.LETTER, holder.button.text.toString())
             context.startActivity(intent)
         }
@@ -72,8 +71,6 @@ class LetterAdapter :
         holder.button.text = item.toString()
     }
 
-    // Setup custom accessibility delegate to set the text read with
-    // an accessibility service
     companion object Accessibility : View.AccessibilityDelegate() {
         @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
         override fun onInitializeAccessibilityNodeInfo(
@@ -81,10 +78,6 @@ class LetterAdapter :
             info: AccessibilityNodeInfo
         ) {
             super.onInitializeAccessibilityNodeInfo(host, info)
-            // With `null` as the second argument to [AccessibilityAction], the
-            // accessibility service announces "double tap to activate".
-            // If a custom string is provided,
-            // it announces "double tap to <custom string>".
             val customString = host.context?.getString(R.string.look_up_words)
             val customClick =
                 AccessibilityNodeInfo.AccessibilityAction(
