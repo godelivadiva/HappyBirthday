@@ -2,4 +2,10 @@
     <string name="app_name">Happy Birthday</string>
     <string name="happy_birthday_text">Happy Birthday, Del!</string>
     <string name="signature_text">-Aldi-</string>
+
+<!-- WordsActivity -->
+    <string name="look_up_words">Show Stored Words</string>
+    <string name="look_up_word">Look up word in a Browser Search</string>
+    <string name="detail_prefix">Words That Start With</string>
+    <string name="action_switch_layout">Switch Layout</string>
 </resources>
